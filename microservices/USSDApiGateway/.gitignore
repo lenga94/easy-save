@@ -1,0 +1,8 @@
+/vendor
+Homestead.json
+Homestead.yaml
+.env
+database/database.sqlite
+idea/workspace.xml
+storage/*.key
+

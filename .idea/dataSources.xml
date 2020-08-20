@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Easy Save USSD API Gateway Database" uuid="f10e2004-3ffc-477d-a41f-dbe8b8046e1e">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/easy_save_ussd_api_gateway_db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Easy Wallet Clients API Database" uuid="8ae77c34-baf6-42dc-9420-3ac781ea01d0">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/easy_save_clients_api_db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Easy Save API Gateway Database" uuid="5ad93e26-14b7-446b-89b4-4812409c3ee7">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/easy_save_api_gateway_db</jdbc-url>
+    </data-source>
+  </component>
+</project>
