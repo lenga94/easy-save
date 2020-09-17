@@ -60,12 +60,12 @@ class ClientsController extends Controller
         $phoneNumber = $request->phone_number;
 
         //create client
-        $response = $this->getResponse($this->clientsService->createClient($request->all()));
+        $response = $this->clientsService->createClient($request->all());
 
-        if($response->code == Response::HTTP_CREATED) {
+        if($this->getResponseCode($response) == Response::HTTP_CREATED) {
 
             //get client from response
-            $client = $response->data;
+            $client = $this->getResponseData($response);
 
             //send sms to client phone number
             $this->smsService->sendSMSMessage(array (
@@ -73,10 +73,10 @@ class ClientsController extends Controller
                 "message_body" => "Thank you {$client->first_name} for using Easy Save. Your have been successfully registered to use easy save services. Your reference number is {$client->client_number}"
             ));
 
-            return $this->successResponse($response->data, $response->code);
+            return $this->successResponse($response, $this->getResponseCode($response));
         }
 
-        return $this->errorResponse($response->error, $response->code);
+        return $this->errorResponse($this->getResponseError($response), $this->getResponseCode($response));
     }
 
     /**
