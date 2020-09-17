@@ -73,7 +73,7 @@ class ClientsController extends Controller
                 "message_body" => "Thank you {$client->first_name} for using Easy Save. Your have been successfully registered to use easy save services. Your reference number is {$client->client_number}"
             ));
 
-            return $this->successResponse($response, $response->code);
+            return $this->successResponse($response->data, $response->code);
         }
 
         return $this->errorResponse($response->error, $response->code);
