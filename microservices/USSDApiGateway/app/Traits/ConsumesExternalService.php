@@ -18,6 +18,7 @@ trait ConsumesExternalService
     {
         $client = new Client([
             'base_uri' => $this->baseUri,
+            'http_errors' => false,
         ]);
 
         if(isset($this->secret)) {

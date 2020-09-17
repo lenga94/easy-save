@@ -52,7 +52,7 @@ class ClientsController extends Controller
     /**
      * Create one new client
      * @param Request $request
-     * @return Response|ResponseFactory
+     * @return JsonResponse|ResponseFactory
      */
     public function store(Request $request)
     {
@@ -60,12 +60,12 @@ class ClientsController extends Controller
         $phoneNumber = $request->phone_number;
 
         //create client
-        $response = $this->clientsService->createClient($request->all());
+        $response = $this->getResponse($this->clientsService->createClient($request->all()));
 
-        if($this->getResponseCode($response) == Response::HTTP_CREATED) {
+        if($response->code == Response::HTTP_CREATED) {
 
             //get client from response
-            $client = $this->getResponseData($response);
+            $client = $response->data;
 
             //send sms to client phone number
             $this->smsService->sendSMSMessage(array (
@@ -73,13 +73,10 @@ class ClientsController extends Controller
                 "message_body" => "Thank you {$client->first_name} for using Easy Save. Your have been successfully registered to use easy save services. Your reference number is {$client->client_number}"
             ));
 
-            //TODO: send post request to ussd api gateway registered client routes
-
-            return $this->successResponse($response, Response::HTTP_CREATED);
-
+            return $this->successResponse($response, $response->code);
         }
 
-        return $this->errorResponse($response, Response::HTTP_UNPROCESSABLE_ENTITY);
+        return $this->errorResponse($response->error, $response->code);
     }
 
     /**

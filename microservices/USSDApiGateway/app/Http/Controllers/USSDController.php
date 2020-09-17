@@ -374,9 +374,9 @@ class USSDController extends Controller
             $ussdHandler->setSessionVariable('client', $clientData);
 
             //TODO: post client data to client service through API gateway
-            $response = $this->apiGateway->createClient($clientData);
+            $response = $this->getResponse($this->apiGateway->createClient($clientData));
 
-            if($this->getResponseCode($response) == Response::HTTP_CREATED) {
+            if($response->code == Response::HTTP_CREATED) {
 
                 //create new client in database
                 RegisteredClient::create($clientData);
